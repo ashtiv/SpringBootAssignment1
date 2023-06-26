@@ -28,15 +28,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<MyUser> getAllUsers() {
         String sql = "SELECT * FROM my_user";
-        return jdbcTemplate.query(sql, new MyUserRowMapper());
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(MyUser.class));
     }
+
     @Override
     public MyUser createUser(MyUser myUser) {
         String sql = "INSERT INTO my_user (name, gender, mobile_number, address) VALUES (?, ?, ?, ?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement(sql, new String[]{"id"});
+            PreparedStatement ps = connection.prepareStatement(sql, new String[] { "id" });
             ps.setString(1, myUser.getName());
             ps.setString(2, myUser.getGender());
             ps.setString(3, myUser.getMobileNumber());
@@ -47,6 +48,7 @@ public class UserServiceImpl implements UserService {
         myUser.setId(keyHolder.getKey().longValue());
         return myUser;
     }
+
     @Override
     public List<MyUser> searchUsers(UserSearchCriteria criteria) {
         String sql = "SELECT * FROM my_user WHERE 1=1";
@@ -68,7 +70,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public MyUser updateUser(Long id, MyUser myUser) {
         String sql = "UPDATE my_user SET name=?, gender=?, mobile_number=?, address=? WHERE id=?";
-        jdbcTemplate.update(sql, myUser.getName(), myUser.getGender(), myUser.getMobileNumber(), myUser.getAddress(), id);
+        jdbcTemplate.update(sql, myUser.getName(), myUser.getGender(), myUser.getMobileNumber(), myUser.getAddress(),
+                id);
         myUser.setId(id);
         return myUser;
     }
@@ -78,6 +81,7 @@ public class UserServiceImpl implements UserService {
         String sql = "DELETE FROM my_user WHERE id=?";
         jdbcTemplate.update(sql, id);
     }
+
     private static class MyUserRowMapper implements RowMapper<MyUser> {
         @Override
         public MyUser mapRow(ResultSet rs, int rowNum) throws SQLException {
