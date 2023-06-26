@@ -1,7 +1,7 @@
 package com.example.SpringBootAssignment1.Service;
 
-import com.example.SpringBootAssignment1.Repository.MyUser;
-import com.example.SpringBootAssignment1.Repository.UserSearchCriteria;
+import com.example.SpringBootAssignment1.User.MyUser;
+import com.example.SpringBootAssignment1.User.UserSearchCriteria;
 
 import java.util.List;
 

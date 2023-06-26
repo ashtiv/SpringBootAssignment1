@@ -1,4 +1,4 @@
-package com.example.SpringBootAssignment1.Repository;
+package com.example.SpringBootAssignment1.User;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
