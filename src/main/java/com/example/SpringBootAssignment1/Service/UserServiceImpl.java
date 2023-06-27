@@ -1,7 +1,6 @@
 package com.example.SpringBootAssignment1.Service;
 
-import com.example.SpringBootAssignment1.User.MyUser;
-import com.example.SpringBootAssignment1.User.UserSearchCriteria;
+import com.example.SpringBootAssignment1.Model.MyUser;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

@@ -1,7 +1,7 @@
 package com.example.SpringBootAssignment1.Controller;
 
-import com.example.SpringBootAssignment1.User.MyUser;
-import com.example.SpringBootAssignment1.User.UserSearchCriteria;
+import com.example.SpringBootAssignment1.Model.MyUser;
+import com.example.SpringBootAssignment1.Service.UserSearchCriteria;
 import com.example.SpringBootAssignment1.Service.UserService;
 import org.springframework.web.bind.annotation.*;
 

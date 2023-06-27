@@ -1,4 +1,4 @@
-package com.example.SpringBootAssignment1.User;
+package com.example.SpringBootAssignment1.Service;
 
 public class UserSearchCriteria {
     private Long id;
