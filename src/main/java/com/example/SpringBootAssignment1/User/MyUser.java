@@ -10,6 +10,10 @@ public class MyUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
+    private String name;
+    private String gender;
+    private String mobileNumber;
+    private String address;
 
     public Long getId() {
         return id;
@@ -50,11 +54,6 @@ public class MyUser {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    private String name;
-    private String gender;
-    private String mobileNumber;
-    private String address;
 
     // Constructors, getters, and setters
 }

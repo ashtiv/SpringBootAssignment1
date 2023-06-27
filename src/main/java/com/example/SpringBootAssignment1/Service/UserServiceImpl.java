@@ -4,14 +4,12 @@ import com.example.SpringBootAssignment1.User.MyUser;
 import com.example.SpringBootAssignment1.User.UserSearchCriteria;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +22,10 @@ public class UserServiceImpl implements UserService {
 
         this.jdbcTemplate = jdbcTemplate;
     }
-
+    @PostConstruct
+    public void createTable() {
+        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS my_user (id SERIAL PRIMARY KEY, name VARCHAR(255), gender VARCHAR(255), mobile_number VARCHAR(255), address VARCHAR(255))");
+    }
     @Override
     public List<MyUser> getAllUsers() {
         String sql = "SELECT * FROM my_user";
@@ -82,16 +83,4 @@ public class UserServiceImpl implements UserService {
         jdbcTemplate.update(sql, id);
     }
 
-    private static class MyUserRowMapper implements RowMapper<MyUser> {
-        @Override
-        public MyUser mapRow(ResultSet rs, int rowNum) throws SQLException {
-            MyUser myUser = new MyUser();
-            myUser.setId(rs.getLong("id"));
-            myUser.setName(rs.getString("name"));
-            myUser.setGender(rs.getString("gender"));
-            myUser.setMobileNumber(rs.getString("mobile_number"));
-            myUser.setAddress(rs.getString("address"));
-            return myUser;
-        }
-    }
 }
