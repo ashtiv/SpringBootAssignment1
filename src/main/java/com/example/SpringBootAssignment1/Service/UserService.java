@@ -8,7 +8,7 @@ public interface UserService {
     MyUser createUser(MyUser myUser);
     List<MyUser> searchUsers(UserSearchCriteria criteria);
     MyUser updateUser(Long id, MyUser myUser);
-    void deleteUser(Long id);
+    String deleteUser(Long id);
 
     List<MyUser> getAllUsers();
 }

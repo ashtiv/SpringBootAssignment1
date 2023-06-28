@@ -1,6 +1,7 @@
 package com.example.SpringBootAssignment1.Service;
 
 import com.example.SpringBootAssignment1.Model.MyUser;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -18,7 +19,6 @@ public class UserServiceImpl implements UserService {
     private final JdbcTemplate jdbcTemplate;
 
     public UserServiceImpl(JdbcTemplate jdbcTemplate) {
-
         this.jdbcTemplate = jdbcTemplate;
     }
     @PostConstruct
@@ -77,9 +77,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(Long id) {
+    public String deleteUser(Long id) {
         String sql = "DELETE FROM my_user WHERE id=?";
-        jdbcTemplate.update(sql, id);
+        int rowsDeleted = jdbcTemplate.update(sql, id);
+        if (rowsDeleted == 0) {
+            return "No user exists with id " + id;
+        }
+        return "User of id " + id + " has been deleted.";
     }
 
 }

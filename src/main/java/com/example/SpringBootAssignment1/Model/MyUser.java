@@ -54,6 +54,4 @@ public class MyUser {
     public void setAddress(String address) {
         this.address = address;
     }
-
-    // Constructors, getters, and setters
 }
